@@ -1,0 +1,6 @@
+@pjt.apc.estoque.api_HostAddress = http://localhost:5195
+
+GET {{pjt.apc.estoque.api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
