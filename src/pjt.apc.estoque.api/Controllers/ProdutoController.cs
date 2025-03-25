@@ -94,9 +94,8 @@ namespace pjt.apc.estoque.api.Controllers
             return BadRequest("Não foi possível conectar ao DB.");
         }
 
-        [HttpGet]
-        //[Route("Produto{id}")] ///api/produto/:id
-        [Route("{id}")] ///api/produto/:id 
+        [HttpGet]   
+        [Route("{id}")] 
         [ProducesResponseType(statusCode: StatusCodes.Status200OK, Type = typeof(Produto[]))]
         [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
         [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest, Type = typeof(Erro))]
