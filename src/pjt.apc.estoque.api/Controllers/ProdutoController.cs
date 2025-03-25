@@ -19,7 +19,7 @@ namespace pjt.apc.estoque.api.Controllers
         Response result = new();
 
         [HttpGet]
-        [Route("ProdutosPorId")]
+        [Route("ListaPorId")] 
         [ProducesResponseType(statusCode: StatusCodes.Status200OK, Type = typeof(Produto[]))]
         [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
         [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest, Type = typeof(Erro))]
@@ -38,7 +38,7 @@ namespace pjt.apc.estoque.api.Controllers
         }
 
         [HttpGet]
-        [Route("ProdutosPorNome")]
+        [Route("ListaPorNome")]
         [ProducesResponseType(statusCode: StatusCodes.Status200OK, Type = typeof(Produto[]))]
         [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
         [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest, Type = typeof(Erro))]
@@ -57,7 +57,7 @@ namespace pjt.apc.estoque.api.Controllers
         }
 
         [HttpGet]
-        [Route("ProdutosMasculinos")]
+        [Route("Masculino")]
         [ProducesResponseType(statusCode: StatusCodes.Status200OK, Type = typeof(Produto[]))]
         [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
         [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest, Type = typeof(Erro))]
@@ -76,7 +76,7 @@ namespace pjt.apc.estoque.api.Controllers
         }
 
         [HttpGet]
-        [Route("ProdutosFemininos")]
+        [Route("Feminino")]
         [ProducesResponseType(statusCode: StatusCodes.Status200OK, Type = typeof(Produto[]))]
         [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
         [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest, Type = typeof(Erro))]
@@ -95,7 +95,8 @@ namespace pjt.apc.estoque.api.Controllers
         }
 
         [HttpGet]
-        [Route("Produto{id}")]
+        //[Route("Produto{id}")] ///api/produto/:id
+        [Route("{id}")] ///api/produto/:id 
         [ProducesResponseType(statusCode: StatusCodes.Status200OK, Type = typeof(Produto[]))]
         [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
         [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest, Type = typeof(Erro))]
@@ -114,7 +115,7 @@ namespace pjt.apc.estoque.api.Controllers
         }
 
         [HttpGet]
-        [Route("Produto{nome}")]
+        [Route("{nome}")]
         [ProducesResponseType(statusCode: StatusCodes.Status200OK, Type = typeof(Produto[]))]
         [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
         [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest, Type = typeof(Erro))]
@@ -133,7 +134,7 @@ namespace pjt.apc.estoque.api.Controllers
         }
 
         [HttpPost]
-        [Route("Produto")]
+        [Route("")]
         [ProducesResponseType(statusCode: StatusCodes.Status200OK, Type = typeof(Produto[]))]
         [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
         [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest, Type = typeof(Erro))]
@@ -152,7 +153,7 @@ namespace pjt.apc.estoque.api.Controllers
         }
 
         [HttpPut]
-        [Route("Produto{id}")]
+        [Route("{id}")]
         [ProducesResponseType(statusCode: StatusCodes.Status200OK, Type = typeof(Produto[]))]
         [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
         [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest, Type = typeof(Erro))]
@@ -171,7 +172,7 @@ namespace pjt.apc.estoque.api.Controllers
         }
 
         [HttpDelete]
-        [Route("Produto{id}")]
+        [Route("{id}")]
         [ProducesResponseType(statusCode: StatusCodes.Status200OK, Type = typeof(Produto[]))]
         [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
         [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest, Type = typeof(Erro))]
