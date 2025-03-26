@@ -1,4 +1,4 @@
-Olá, este projeto é de minha autoria mas fique a vontade para clona-lo a fim de estudos;
+Olá, este projeto é de minha autoria mas fique a vontade para clona-lo a fim de estudos.  
 O objetivo desta API é gerenciar um estoque de produtos do tipo 'vestuário', 
 sendo assim, criei um CRUD utilizando .net 8, Entity Framework (code-first).  
 
