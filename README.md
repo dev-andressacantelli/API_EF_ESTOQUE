@@ -9,7 +9,7 @@ Camada Application - Responsável pela regra de negócio, ou seja, todas as vali
 Camada Crosscutting - Responsável pelas configurações que atravessam todas as camadas;
 Camada Domain - Responsável pelas entidades principais do projeto, assim como as interfaces e o tratamento de resultados;
 Camada de infrastructure - Responsável pelo repositório, onde acontecem todas as ações de banco de dados;
-
+<br>
 Para que o projeto funcione em sua máquina, siga os passos a seguir:
 1 - Verifique a string de conexão do banco de dados em appsettings(raiz), altere para sua conexão de banco.
 2 - Certifique-se de não há uma tabela nomeada 'Produtos' em sua instância de banco de dados.
