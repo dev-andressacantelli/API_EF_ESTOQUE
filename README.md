@@ -1,8 +1,8 @@
 Olá, este projeto é de minha autoria mas fique a vontade para clona-lo a fim de estudos;
 O objetivo desta API é gerenciar um estoque de produtos do tipo 'vestuário', 
-sendo assim, criei um CRUD utilizando .net 8, Entity Framework (code-first);
-<br>
-Esta API foi feita em padrão de arquitetura DDD baseado em minhas experiências profissionais, sendo assim, existe a possibilidade de executar este padrão de outra forma;
+sendo assim, criei um CRUD utilizando .net 8, Entity Framework (code-first).  
+
+\Esta API foi feita em padrão de arquitetura DDD baseado em minhas experiências profissionais, sendo assim, existe a possibilidade de executar este padrão de outra forma;
 Segue explicação sobre cada camada do projeto:
 Camada API - Responsável pela inicialização principal do projeto, contendo todas as controllers, appsettings e program;
 Camada Application - Responsável pela regra de negócio, ou seja, todas as validações de dados são verificadas aqui, podendo seguir ou não para as próximas camadas;
