@@ -1,6 +1,7 @@
 ﻿using pjt.apc.estoque.domain.Interfaces;
 using pjt.apc.estoque.domain.Models;
 using pjt.apc.estoque.domain.Results;
+using System.Runtime.InteropServices;
 
 namespace pjt.apc.estoque.application.Dispatcher
 {
@@ -10,8 +11,8 @@ namespace pjt.apc.estoque.application.Dispatcher
         public ProdutoDispatcher(IProdutoRepository produtoRepository)
         {
             _produtoRepository = produtoRepository;
-        }
-        
+        }  
+
 
         public async Task<Response> GetAllProdutosOrderByIdAsync()
         {
@@ -73,9 +74,29 @@ namespace pjt.apc.estoque.application.Dispatcher
             throw new NotImplementedException();
         }
 
-        public Task<Response> GetProdutoById(int id)
+        public async Task<Response> GetProdutoById(int id)
         {
-            throw new NotImplementedException();
+            Response result = new();
+
+            try
+            {
+                var consultaDb = await _produtoRepository.GetProdutoById(id);
+
+                if (consultaDb != null)
+                {
+                    result.Resultado.Objeto = consultaDb;
+                    return result;
+                }
+
+                //result.StatusCode = StatusCodes.Status404NotFound;
+                result.Resultado.Mensagem = "Não foi possível retornar os dados! Verifique a conexão com o banco de dados.";
+                return result;
+            }
+            catch (Exception)
+            {
+                //result.StatusCode = StatusCodes.Status500InternalServerError;
+                return result;
+            }
         }
 
         public Task<Response> GetProdutoByName(string nome)
