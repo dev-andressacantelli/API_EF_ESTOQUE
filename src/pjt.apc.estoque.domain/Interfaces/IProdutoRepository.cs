@@ -10,7 +10,7 @@ namespace pjt.apc.estoque.domain.Interfaces
         public Task<List<Produto>> GetProdutosOrderByGeneroFeminino();
         public Task<Produto> GetProdutoById(int id);
         public Task<Produto> GetProdutoByName(string nome);
-        public Task<Produto> InsertProdutoAsync(Produto produto);
+        public Task<bool> InsertProdutoAsync(Produto produto);
         public Task<Produto> UpdateProdutoAsync(Produto produto);
         public Task<Produto> DeleteProdutoAsync(int id);
     }

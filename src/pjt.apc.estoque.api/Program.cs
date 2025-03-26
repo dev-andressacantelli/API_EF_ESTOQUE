@@ -1,12 +1,11 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using pjt.apc.estoque.api.Configurations;
+using pjt.apc.estoque.api.Context;
+using pjt.apc.estoque.api.Dependencies;
+
+
 
 
 //using pjt.apc.estoque.api.Context;
-using pjt.apc.estoque.application.Dispatcher;
-using pjt.apc.estoque.domain.Context;
-using pjt.apc.estoque.domain.Interfaces;
 //using pjt.apc.estoque.infrastructure.Repositories;
 //using pjt.apc.estoque.domain.Contexts;
 
@@ -17,6 +16,8 @@ using pjt.apc.estoque.domain.Interfaces;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<ProdutoContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("DbCon")));
+//builder.Services.AddDbContext<ProdutoContext>(x => x.UseSqlServer(b => b.MigrationsAssembly("pjt.apc.estoque.api")));
+
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -27,6 +28,7 @@ builder.Services.AddEndpointsApiExplorer();
 
 // Injeção de dependência
 //services.AddDependencyInjectionConfiguration();
+//builder.Services.AddDependencyInjectionConfiguration();
 builder.Services.AddDependencyInjectionConfiguration();
 
 

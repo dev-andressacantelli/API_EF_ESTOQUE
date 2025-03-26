@@ -28,8 +28,8 @@ namespace pjt.apc.estoque.api.Controllers
         {
             var result = await _produtoDispatcher.GetAllProdutosOrderByIdAsync();
 
-            if (result.Resultado == null)
-                return Ok(result.Resultado);
+            if (result.Resultado != null)
+                return Ok(result.Resultado.Objeto);
 
             //if (result.StatusCode == StatusCodes.Status404NotFound)
             //    return NotFound();
@@ -133,7 +133,7 @@ namespace pjt.apc.estoque.api.Controllers
         }
 
         [HttpPost]
-        [Route("")]
+        [Route("AddProduto")]
         [ProducesResponseType(statusCode: StatusCodes.Status200OK, Type = typeof(Produto[]))]
         [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
         [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest, Type = typeof(Erro))]
@@ -142,8 +142,8 @@ namespace pjt.apc.estoque.api.Controllers
         {
             var result = await _produtoDispatcher.InsertProdutoAsync(produto);
 
-            if (result.Resultado == null)
-                return Ok(result.Resultado);
+            if (result.Resultado != null)
+                return Ok(result.Resultado.Mensagem);
 
             //if (result.StatusCode == StatusCodes.Status404NotFound)
             //    return NotFound();
@@ -152,7 +152,7 @@ namespace pjt.apc.estoque.api.Controllers
         }
 
         [HttpPut]
-        [Route("{id}")]
+        [Route("UpdateProduto{id}")]
         [ProducesResponseType(statusCode: StatusCodes.Status200OK, Type = typeof(Produto[]))]
         [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
         [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest, Type = typeof(Erro))]
@@ -171,7 +171,7 @@ namespace pjt.apc.estoque.api.Controllers
         }
 
         [HttpDelete]
-        [Route("{id}")]
+        [Route("DeleteProduto{id}")]
         [ProducesResponseType(statusCode: StatusCodes.Status200OK, Type = typeof(Produto[]))]
         [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
         [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest, Type = typeof(Erro))]

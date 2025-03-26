@@ -11,7 +11,9 @@ namespace pjt.apc.estoque.application.Dispatcher
         public ProdutoDispatcher(IProdutoRepository produtoRepository)
         {
             _produtoRepository = produtoRepository;
-        }  
+        }
+
+        Response result = new();
 
 
         public async Task<Response> GetAllProdutosOrderByIdAsync()
@@ -102,11 +104,35 @@ namespace pjt.apc.estoque.application.Dispatcher
         public Task<Response> GetProdutoByName(string nome)
         {
             throw new NotImplementedException();
-        }  
+        }
 
-        public Task<Response> InsertProdutoAsync(Produto produto)
+        public async Task<Response> InsertProdutoAsync(Produto produto)
         {
-            throw new NotImplementedException();
+            //Response result = new();
+
+            if (produto != null)
+            {
+                try
+                {
+                    var addData = await _produtoRepository.InsertProdutoAsync(produto);
+
+                    if (addData == true)
+                    {
+                        result.Resultado.Mensagem = "Produto adicionado com sucesso ao banco de dados!";
+                    }
+
+                    //result.Resultado.Mensagem = "Não foi possível adicionar o produto! Verifique a conexão com o banco de dados.";
+                    //return result;
+                }
+                catch (Exception)
+                {
+                    result.Resultado.Mensagem = "Não foi possível adicionar o produto! Verifique se os campos estão devidamente preenchidos!";
+                    return result;
+                }
+            }
+
+            //result.Resultado.Mensagem = "Não é possível adicionar um produto com valor nulo!";
+            return result;
         }
 
         public Task<Response> UpdateProdutoAsync(Produto produto)

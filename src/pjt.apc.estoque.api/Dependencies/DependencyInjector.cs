@@ -1,14 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using pjt.apc.estoque.api.Repositories;
 using pjt.apc.estoque.application.Dispatcher;
 using pjt.apc.estoque.domain.Interfaces;
-using pjt.apc.estoque.infrastructure.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace pjt.apc.estoque.crosscutting
+namespace pjt.apc.estoque.api.Dependencies
 {
     public class DependencyInjector
     {

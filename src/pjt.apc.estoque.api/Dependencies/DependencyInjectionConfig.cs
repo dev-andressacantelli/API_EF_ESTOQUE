@@ -1,6 +1,6 @@
-﻿using pjt.apc.estoque.crosscutting;
+﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace pjt.apc.estoque.api.Configurations
+namespace pjt.apc.estoque.api.Dependencies
 {
     public static class DependencyInjectionConfig
     {

@@ -1,14 +1,12 @@
-﻿using pjt.apc.estoque.domain.Context;
+﻿using Microsoft.AspNetCore.Mvc;
+using pjt.apc.estoque.api.Context;
 using pjt.apc.estoque.domain.Interfaces;
 using pjt.apc.estoque.domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using pjt.apc.estoque.domain.Results;
 
-namespace pjt.apc.estoque.infrastructure.Repositories
+namespace pjt.apc.estoque.api.Repositories
 {
+
     public class ProdutoRepository : IProdutoRepository
     {
         private readonly ProdutoContext produtoContext;
@@ -113,7 +111,7 @@ namespace pjt.apc.estoque.infrastructure.Repositories
                 return "No user found";
             }
         }
-         
+
          */
         public Task<Produto> GetProdutoById(int id)
         {
@@ -139,9 +137,30 @@ namespace pjt.apc.estoque.infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<Produto> InsertProdutoAsync(Produto produto)
+
+
+
+
+        public async Task<bool> InsertProdutoAsync(Produto produto)
         {
-            throw new NotImplementedException();
+            try
+            {      
+                if (produto != null)
+                {
+                    string response = string.Empty;
+                    produtoContext.Produto.Add(produto);
+                    //produtoContext.SaveChanges();
+                    var ret = await produtoContext.SaveChangesAsync();
+                    if (ret >= 0)
+                        return true;
+                }
+
+                return false;
+            }
+            catch (Exception)
+            {
+                return false;             
+            }
         }
 
         public Task<Produto> UpdateProdutoAsync(Produto produto)
@@ -154,4 +173,5 @@ namespace pjt.apc.estoque.infrastructure.Repositories
             throw new NotImplementedException();
         }
     }
+
 }
