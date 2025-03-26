@@ -1,8 +1,13 @@
-﻿using pjt.apc.estoque.api.Context;
+﻿using pjt.apc.estoque.domain.Context;
 using pjt.apc.estoque.domain.Interfaces;
 using pjt.apc.estoque.domain.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace pjt.apc.estoque.api.Infra.Repositories
+namespace pjt.apc.estoque.infrastructure.Repositories
 {
     public class ProdutoRepository : IProdutoRepository
     {
