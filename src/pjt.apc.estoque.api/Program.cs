@@ -1,9 +1,12 @@
 using Microsoft.EntityFrameworkCore;
-using pjt.apc.estoque.api.Context;
+//using pjt.apc.estoque.api.Context;
 using pjt.apc.estoque.application.Dispatcher;
 using pjt.apc.estoque.domain.Interfaces;
 //using pjt.apc.estoque.infrastructure.Repositories;
-using Microsoft.Extensions.DependencyInjection;
+//using pjt.apc.estoque.domain.Contexts;
+
+using pjt.apc.estoque.api.Context;
+using pjt.apc.estoque.api.Infra.Repositories;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,16 +16,18 @@ builder.Services.AddDbContext<ProdutoContext>(x => x.UseSqlServer(builder.Config
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-//builder.Services.AddRegisters();
+//builder.Services.AddDatabseConfiguration(IConfiguration configuration);
+//builder.Services.AddDependencyInjectionConfiguration();
 
 
 
+//builder.Services.AddScoped<DependencyInjector>();
+//builder.Services.AddRegisters(); (NÃO SEI)
+//services.AddDependencyInjectionConfiguration(); (NÃO SEI)
 
-//services.AddDependencyInjectionConfiguration();
 
-/*
-builder.Services.AddSingleton<IProdutoDispatcher, ProdutoDispatcher>();
-builder.Services.AddSingleton<IProdutoRepository, ProdutoRepository>();*/
+builder.Services.AddScoped<IProdutoDispatcher, ProdutoDispatcher>();
+builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
 
 var app = builder.Build();
 

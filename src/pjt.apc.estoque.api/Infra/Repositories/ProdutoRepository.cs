@@ -1,14 +1,13 @@
-﻿using pjt.apc.estoque.domain.Interfaces;
+﻿using pjt.apc.estoque.api.Context;
+using pjt.apc.estoque.domain.Interfaces;
 using pjt.apc.estoque.domain.Models;
-using pjt.apc.estoque.infrastructure.Contexts;
 
-
-namespace pjt.apc.estoque.infrastructure.Repositories
+namespace pjt.apc.estoque.api.Infra.Repositories
 {
     public class ProdutoRepository : IProdutoRepository
     {
-        private readonly Context produtoContext;
-        public ProdutoRepository(Context produtoContext)
+        private readonly ProdutoContext produtoContext;
+        public ProdutoRepository(ProdutoContext produtoContext)
         {
             this.produtoContext = produtoContext;
         }
@@ -56,7 +55,7 @@ namespace pjt.apc.estoque.infrastructure.Repositories
         {
             try
             {
-                var ret = produtoContext.Produto.ToList();               
+                var ret = produtoContext.Produto.ToList();
 
                 if (!ret.Any()) return null;
 
@@ -115,14 +114,14 @@ namespace pjt.apc.estoque.infrastructure.Repositories
         {
             try
             {
-               Produto produto = produtoContext.Produto.Where(x => x.ID == id).FirstOrDefault();                           
+                Produto produto = produtoContext.Produto.Where(x => x.ID == id).FirstOrDefault();
 
                 if (produto == null)
                 {
                     return null;
                 }
 
-                return null;              
+                return null;
             }
             catch (Exception ex)
             {
@@ -133,7 +132,7 @@ namespace pjt.apc.estoque.infrastructure.Repositories
         public Task<Produto> GetProdutoByName(string nome)
         {
             throw new NotImplementedException();
-        } 
+        }
 
         public Task<Produto> InsertProdutoAsync(Produto produto)
         {
@@ -148,6 +147,6 @@ namespace pjt.apc.estoque.infrastructure.Repositories
         public Task<Produto> DeleteProdutoAsync(int id)
         {
             throw new NotImplementedException();
-        }      
+        }
     }
 }

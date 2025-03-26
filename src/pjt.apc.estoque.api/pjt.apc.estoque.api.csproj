@@ -11,7 +11,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.3" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
 	  <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.0" />
 	  <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.0">
@@ -19,11 +19,13 @@
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	  </PackageReference>
 	  <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.0" />
+	  <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\pjt.apc.estoque.application\pjt.apc.estoque.application.csproj" />
-    <ProjectReference Include="..\pjt.apc.estoque.infrastructure\pjt.apc.estoque.infrastructure.csproj" />
+    <ProjectReference Include="..\pjt.apc.estoque.crosscutting\pjt.apc.estoque.crosscutting.csproj" />
+    <ProjectReference Include="..\pjt.apc.estoque.domain\pjt.apc.estoque.domain.csproj" />
   </ItemGroup>
 
 </Project>
