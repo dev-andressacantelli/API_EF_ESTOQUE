@@ -112,7 +112,7 @@ namespace pjt.apc.estoque.application.Dispatcher
                     return result;
                 }
 
-                result.Resultado.Mensagem = "Não existe produto cadastrado com esse Nome, ou o mesmo foi deletado da base de banco de dados.";
+                result.Resultado.Mensagem = "Não existe produto cadastrado com esse nome, ou o mesmo foi deletado da base de banco de dados.";
                 return result;
             }
             catch (Exception)
