@@ -22,7 +22,7 @@ clique em atualizar base de dados, procure por 'Tabelas', e note que a tabela 'P
 
 Para popular a tabela com dados prontos, execute o endpoint '/api/Produto/AddFakeData',
 este método irá popular a tabela com 5 objetos à cada execução.  
-Com a base populada, você poderá manipular os dados já insridos.   
+Com a base populada, você poderá manipular os dados já inseridos.   
 
 Explicação sobre a organização do projeto:  
 Esta API foi feita em padrão de arquitetura DDD baseado em minhas experiências profissionais, sendo assim, existem outras possibilidades de executar este padrão.     
