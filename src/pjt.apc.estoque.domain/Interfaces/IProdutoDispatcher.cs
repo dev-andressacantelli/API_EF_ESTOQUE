@@ -11,6 +11,7 @@ namespace pjt.apc.estoque.domain.Interfaces
         public Task<Response> GetProdutoById(int id);
         public Task<Response> GetProdutoByName(string nome);
         public Task<Response> InsertProdutoAsync(Produto produto);
+        public Task<Response> InsertFakeDataAsync();
         public Task<Response> UpdateProdutoAsync(Produto produto);
         public Task<Response> DeleteProdutoAsync(int id);
     }

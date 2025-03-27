@@ -4,7 +4,6 @@ using pjt.apc.estoque.domain.Models;
 
 namespace pjt.apc.estoque.api.Repositories
 {
-
     public class ProdutoRepository : IProdutoRepository
     {
         private readonly ProdutoContext produtoContext;
@@ -120,6 +119,28 @@ namespace pjt.apc.estoque.api.Repositories
             }
         }
 
+        public async Task<bool> InsertFakeDataAsync(Produto produto)
+        {
+            try
+            {
+                if (produto != null)
+                {
+                    string response = string.Empty;
+                    produtoContext.Produto.Add(produto);
+                    var ret = await produtoContext.SaveChangesAsync();
+                    if (ret >= 0)
+                        return true;
+                }
+
+                return false;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+
         public async Task<bool> UpdateProdutoAsync(Produto produto)
         {
             try
@@ -158,6 +179,6 @@ namespace pjt.apc.estoque.api.Repositories
             {
                 return false;
             }
-        }
+        }      
     }
 }

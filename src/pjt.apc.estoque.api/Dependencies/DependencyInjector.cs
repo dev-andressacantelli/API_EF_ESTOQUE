@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using pjt.apc.estoque.api.Repositories;
 using pjt.apc.estoque.application.Dispatcher;
+using pjt.apc.estoque.domain.Bogus;
 using pjt.apc.estoque.domain.Interfaces;
 
 namespace pjt.apc.estoque.api.Dependencies
@@ -10,7 +11,7 @@ namespace pjt.apc.estoque.api.Dependencies
         public static void Register(IServiceCollection svcCollection)
         {      
             svcCollection.AddScoped<IProdutoDispatcher, ProdutoDispatcher>();
-            svcCollection.AddScoped<IProdutoRepository, ProdutoRepository>();
+            svcCollection.AddScoped<IProdutoRepository, ProdutoRepository>();            
         }
     }
 }
