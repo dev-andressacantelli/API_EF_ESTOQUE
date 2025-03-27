@@ -114,6 +114,22 @@ namespace pjt.apc.estoque.api.Controllers
             return BadRequest(result.Resultado.Mensagem);
         }
 
+        [HttpPost]
+        [Route("AddFakeData")]
+        [ProducesResponseType(statusCode: StatusCodes.Status200OK, Type = typeof(Produto[]))]
+        [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
+        [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest, Type = typeof(Erro))]
+        [ProducesResponseType(statusCode: StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> InsertFakeDataAsync()
+        {
+            var result = await _produtoDispatcher.InsertFakeDataAsync();
+
+            if (result.Resultado != null)
+                return Ok(result.Resultado.Mensagem);
+
+            return BadRequest(result.Resultado.Mensagem);
+        }
+
         [HttpPut]
         [Route("UpdateProduto")]
         [ProducesResponseType(statusCode: StatusCodes.Status200OK, Type = typeof(Produto[]))]
