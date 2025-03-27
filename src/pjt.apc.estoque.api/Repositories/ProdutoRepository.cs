@@ -10,7 +10,7 @@ namespace pjt.apc.estoque.api.Repositories
         public ProdutoRepository(ProdutoContext produtoContext)
         {
             this.produtoContext = produtoContext;
-        }       
+        }
 
         public async Task<List<Produto>> GetAllProdutosAsync()
         {
@@ -26,7 +26,7 @@ namespace pjt.apc.estoque.api.Repositories
             {
                 return null;
             }
-        }    
+        }
 
         public async Task<List<Produto>> GetProdutosMasculino()
         {
@@ -79,18 +79,15 @@ namespace pjt.apc.estoque.api.Repositories
             }
         }
 
-        public async Task<Produto> GetProdutoByName(string nome)
+        public async Task<object> GetProdutoByName(string nome)
         {
             try
             {
-                Produto produto = produtoContext.Produto.Where(x => x.Nome == nome).FirstOrDefault();
+                var ret = produtoContext.Produto.Where(x => x.Nome == nome).ToList();
 
-                if (produto == null)
-                {
-                    return null;
-                }
+                if (!ret.Any()) return null;
 
-                return produto;
+                return ret;                
             }
             catch (Exception ex)
             {
@@ -99,27 +96,6 @@ namespace pjt.apc.estoque.api.Repositories
         }
 
         public async Task<bool> InsertProdutoAsync(Produto produto)
-        {
-            try
-            {      
-                if (produto != null)
-                {
-                    string response = string.Empty;
-                    produtoContext.Produto.Add(produto);                   
-                    var ret = await produtoContext.SaveChangesAsync();
-                    if (ret >= 0)
-                        return true;
-                }
-
-                return false;
-            }
-            catch (Exception)
-            {
-                return false;             
-            }
-        }
-
-        public async Task<bool> InsertFakeDataAsync(Produto produto)
         {
             try
             {
@@ -138,8 +114,7 @@ namespace pjt.apc.estoque.api.Repositories
             {
                 return false;
             }
-        }
-
+        }        
 
         public async Task<bool> UpdateProdutoAsync(Produto produto)
         {
@@ -149,7 +124,7 @@ namespace pjt.apc.estoque.api.Repositories
                 {
                     produtoContext.Entry(produto).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                     var ret = await produtoContext.SaveChangesAsync();
-                    return true;                 
+                    return true;
                 }
 
                 return false;
@@ -158,7 +133,7 @@ namespace pjt.apc.estoque.api.Repositories
             {
                 return false;
             }
-        }    
+        }
 
         public async Task<bool> DeleteProdutoAsync(int id)
         {
@@ -171,7 +146,7 @@ namespace pjt.apc.estoque.api.Repositories
                     produtoContext.Produto.Remove(produto);
                     var ret = await produtoContext.SaveChangesAsync();
                     return true;
-                }                
+                }
 
                 return false;
             }
@@ -179,6 +154,6 @@ namespace pjt.apc.estoque.api.Repositories
             {
                 return false;
             }
-        }      
+        }
     }
 }

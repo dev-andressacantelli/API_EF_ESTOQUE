@@ -9,8 +9,8 @@
     public class Resultado
     {
         public object Objeto { get; set; }
-
         public string Mensagem { get; set; }
+        public bool IsSuccess { get; set; }
     }
 
     public class Erro

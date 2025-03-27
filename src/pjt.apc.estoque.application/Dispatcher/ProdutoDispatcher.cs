@@ -112,7 +112,7 @@ namespace pjt.apc.estoque.application.Dispatcher
                     return result;
                 }
 
-                result.Resultado.Mensagem = "Não existe produto cadastrado com esse Nome, ou o mesmo foi deletado da base de banco de dados.";
+                result.Resultado.Mensagem = "Não existe produto cadastrado com esse nome, ou o mesmo foi deletado da base de banco de dados.";
                 return result;
             }
             catch (Exception)
@@ -132,11 +132,18 @@ namespace pjt.apc.estoque.application.Dispatcher
 
                     if (addData == true)
                     {
+                        result.Resultado.IsSuccess = true;
                         result.Resultado.Mensagem = "Produto adicionado com sucesso ao banco de dados!";
+                        return result;
                     }
+
+                    result.Resultado.IsSuccess = false;
+                    result.Resultado.Mensagem = "Não foi possível adicionar o produto! Verifique a conexão com o banco de dados.";
+                    return result;
                 }
                 catch (Exception)
                 {
+                    result.Resultado.IsSuccess = false;
                     result.Resultado.Mensagem = "Não foi possível adicionar o produto! Verifique se os campos estão devidamente preenchidos!";
                     return result;
                 }
@@ -157,9 +164,21 @@ namespace pjt.apc.estoque.application.Dispatcher
 
                     if (addDatas == true)
                     {
-                        result.Resultado.Mensagem = "A base de dados foi populada com sucesso. Verifique os produtos adicionados no método 'GetProdutos'";
+                        result.Resultado.IsSuccess = true;
+                        result.Resultado.Mensagem = "Base populada.";
                     }
-                }              
+                }
+
+                if (result.Resultado.IsSuccess == true)
+                {
+                    result.Resultado.IsSuccess = true;
+                    result.Resultado.Mensagem = "A base de dados foi populada com sucesso. Verifique os produtos adicionados no método 'GetProdutos'";
+                    return result;
+                }
+
+                result.Resultado.IsSuccess = false;
+                result.Resultado.Mensagem = "Não foi possível adicionar os produtos! Verifique a conexão do banco de dados.";
+                return result;
             }
             catch (Exception)
             {
@@ -180,15 +199,18 @@ namespace pjt.apc.estoque.application.Dispatcher
 
                     if (alterData == true)
                     {
+                        result.Resultado.IsSuccess = true;
                         result.Resultado.Mensagem = "Produto alterado com sucesso no banco de dados!";
                         return result;
                     }
 
+                    result.Resultado.IsSuccess = false;
                     result.Resultado.Mensagem = "Não foi possível alterar o produto! Verifique se há produto cadastrado com esse ID.";
                     return result;
                 }
                 catch (Exception)
                 {
+                    result.Resultado.IsSuccess = false;
                     result.Resultado.Mensagem = "Não foi possível alterar o produto! Verifique a conexão com o banco de dados.";
                     return result;
                 }
@@ -208,15 +230,18 @@ namespace pjt.apc.estoque.application.Dispatcher
 
                     if (alterData == true)
                     {
+                        result.Resultado.IsSuccess = true;
                         result.Resultado.Mensagem = "Produto deletado da base de dados com sucesso!";
                         return result;
                     }
 
+                    result.Resultado.IsSuccess = false;
                     result.Resultado.Mensagem = "Não foi possível deletar o produto! Verifique se há produto cadastrado com esse ID ou se ele já foi deletado.";
                     return result;
                 }
                 catch (Exception)
                 {
+                    result.Resultado.IsSuccess = false;
                     result.Resultado.Mensagem = "Não foi possível deletar o produto! Verifique a conexão com o banco de dados.";
                     return result;
                 }
