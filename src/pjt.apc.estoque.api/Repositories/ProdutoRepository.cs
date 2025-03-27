@@ -45,9 +45,20 @@ namespace pjt.apc.estoque.api.Repositories
             }
         }
 
-        public Task<List<Produto>> GetProdutosFeminino()
+        public async Task<List<Produto>> GetProdutosFeminino()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var ret = produtoContext.Produto.Where(x => x.Genero == "Feminino").ToList();
+
+                if (!ret.Any()) return null;
+
+                return ret;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         public Task<Produto> GetProdutoById(int id)

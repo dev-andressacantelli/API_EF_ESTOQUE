@@ -57,9 +57,25 @@ namespace pjt.apc.estoque.application.Dispatcher
             }
         }
 
-        public Task<Response> GetProdutosFeminino()
+        public async Task<Response> GetProdutosFeminino()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var consultaDb = await _produtoRepository.GetProdutosFeminino();
+
+                if (consultaDb != null)
+                {
+                    result.Resultado.Objeto = consultaDb;
+                    return result;
+                }
+
+                result.Resultado.Mensagem = "Não foi possível retornar os produtos! Verifique a conexão com o banco de dados.";
+                return result;
+            }
+            catch (Exception)
+            {
+                return result;
+            }
         }
 
         public async Task<Response> GetProdutoById(int id)
