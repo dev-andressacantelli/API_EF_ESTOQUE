@@ -28,7 +28,7 @@ namespace pjt.apc.estoque.api.Controllers
         {
             var result = await _produtoDispatcher.GetAllProdutosAsync();
 
-            if (result.Resultado != null)
+            if (result.Resultado.Objeto != null )
                 return Ok(result.Resultado.Objeto);          
 
             return BadRequest(result.Resultado.Mensagem); 
@@ -44,7 +44,7 @@ namespace pjt.apc.estoque.api.Controllers
         {
             var result = await _produtoDispatcher.GetProdutosMasculino();
 
-            if (result.Resultado != null)
+            if (result.Resultado.Objeto != null)
                 return Ok(result.Resultado.Objeto);
 
             return BadRequest(result.Resultado.Mensagem);
@@ -60,7 +60,7 @@ namespace pjt.apc.estoque.api.Controllers
         {
             var result = await _produtoDispatcher.GetProdutosFeminino();
 
-            if (result.Resultado != null)
+            if (result.Resultado.Objeto != null)
                 return Ok(result.Resultado.Objeto);
 
             return BadRequest(result.Resultado.Mensagem);
@@ -108,8 +108,8 @@ namespace pjt.apc.estoque.api.Controllers
         {
             var result = await _produtoDispatcher.InsertProdutoAsync(produto);
 
-            if (result.Resultado != null)
-                return Ok(result.Resultado.Mensagem);           
+            if (result.Resultado != null && result.Resultado.IsSuccess == true)
+                return Ok(result.Resultado.Mensagem);
 
             return BadRequest(result.Resultado.Mensagem);
         }
@@ -124,7 +124,7 @@ namespace pjt.apc.estoque.api.Controllers
         {
             var result = await _produtoDispatcher.InsertFakeDataAsync();
 
-            if (result.Resultado != null)
+            if (result.Resultado != null && result.Resultado.IsSuccess == true)
                 return Ok(result.Resultado.Mensagem);
 
             return BadRequest(result.Resultado.Mensagem);
@@ -140,7 +140,7 @@ namespace pjt.apc.estoque.api.Controllers
         {
             var result = await _produtoDispatcher.UpdateProdutoAsync(produto);
 
-            if (result.Resultado != null)
+            if (result.Resultado != null && result.Resultado.IsSuccess == true)
                 return Ok(result.Resultado.Mensagem);
 
             return BadRequest(result.Resultado.Mensagem);
@@ -156,7 +156,7 @@ namespace pjt.apc.estoque.api.Controllers
         {
             var result = await _produtoDispatcher.DeleteProdutoAsync(id);
 
-            if (result.Resultado != null)
+            if (result.Resultado != null && result.Resultado.IsSuccess == true)
                 return Ok(result.Resultado.Mensagem);
 
             return BadRequest(result.Resultado.Mensagem);
