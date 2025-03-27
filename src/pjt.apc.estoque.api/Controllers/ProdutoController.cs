@@ -131,7 +131,7 @@ namespace pjt.apc.estoque.api.Controllers
         }
 
         [HttpDelete]
-        [Route("DeleteProduto{id}")]
+        [Route("DeleteProduto")]
         [ProducesResponseType(statusCode: StatusCodes.Status200OK, Type = typeof(Produto[]))]
         [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
         [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest, Type = typeof(Erro))]
@@ -140,13 +140,10 @@ namespace pjt.apc.estoque.api.Controllers
         {
             var result = await _produtoDispatcher.DeleteProdutoAsync(id);
 
-            if (result.Resultado == null)
-                return Ok(result.Resultado);
+            if (result.Resultado != null)
+                return Ok(result.Resultado.Mensagem);
 
-            //if (result.StatusCode == StatusCodes.Status404NotFound)
-            //    return NotFound();
-
-            return BadRequest("Não foi possível conectar ao DB.");
+            return BadRequest(result.Resultado.Mensagem);
         }
     }
 } 

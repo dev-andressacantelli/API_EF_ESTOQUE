@@ -139,9 +139,25 @@ namespace pjt.apc.estoque.api.Repositories
             }
         }    
 
-        public Task<Produto> DeleteProdutoAsync(int id)
+        public async Task<bool> DeleteProdutoAsync(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Produto produto = produtoContext.Produto.Where(x => x.ID == id).FirstOrDefault();
+
+                if (produto != null)
+                {
+                    produtoContext.Produto.Remove(produto);
+                    var ret = await produtoContext.SaveChangesAsync();
+                    return true;
+                }                
+
+                return false;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }

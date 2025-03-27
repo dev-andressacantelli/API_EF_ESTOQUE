@@ -157,6 +157,9 @@ namespace pjt.apc.estoque.application.Dispatcher
                     {
                         result.Resultado.Mensagem = "Produto alterado com sucesso no banco de dados!";
                     }
+
+                    result.Resultado.Mensagem = "Não foi possível alterar o produto! Verifique se os campos estão devidamente preenchidos!";
+                    return result;
                 }
                 catch (Exception)
                 {
@@ -168,9 +171,31 @@ namespace pjt.apc.estoque.application.Dispatcher
             return result;
         }
 
-        public Task<Response> DeleteProdutoAsync(int id)
+        public async Task<Response> DeleteProdutoAsync(int id)
         {
-            throw new NotImplementedException();
+
+            if (id != 0)
+            {
+                try
+                {
+                    var alterData = await _produtoRepository.DeleteProdutoAsync(id);
+
+                    if (alterData == true)
+                    {
+                        result.Resultado.Mensagem = "Produto deletado da base de dados com sucesso!";
+                    }
+
+                    result.Resultado.Mensagem = "Não foi possível deletar o produto! Verifique se há produto cadastrado com esse ID.";
+                    return result;
+                }
+                catch (Exception)
+                {
+                    result.Resultado.Mensagem = "Não foi possível deletar o produto! Verifique se há produto cadastrado com esse ID.";
+                    return result;
+                }
+            }
+
+            return result;
         }
     }
 }
