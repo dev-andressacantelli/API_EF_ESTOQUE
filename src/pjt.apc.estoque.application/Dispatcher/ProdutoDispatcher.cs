@@ -155,14 +155,15 @@ namespace pjt.apc.estoque.application.Dispatcher
                     if (alterData == true)
                     {
                         result.Resultado.Mensagem = "Produto alterado com sucesso no banco de dados!";
+                        return result;
                     }
 
-                    result.Resultado.Mensagem = "Não foi possível alterar o produto! Verifique se os campos estão devidamente preenchidos!";
+                    result.Resultado.Mensagem = "Não foi possível alterar o produto! Verifique se há produto cadastrado com esse ID.";
                     return result;
                 }
                 catch (Exception)
                 {
-                    result.Resultado.Mensagem = "Não foi possível alterar o produto! Verifique se os campos estão devidamente preenchidos!";
+                    result.Resultado.Mensagem = "Não foi possível alterar o produto! Verifique a conexão com o banco de dados.";
                     return result;
                 }
             }
@@ -182,14 +183,15 @@ namespace pjt.apc.estoque.application.Dispatcher
                     if (alterData == true)
                     {
                         result.Resultado.Mensagem = "Produto deletado da base de dados com sucesso!";
+                        return result;
                     }
 
-                    result.Resultado.Mensagem = "Não foi possível deletar o produto! Verifique se há produto cadastrado com esse ID.";
+                    result.Resultado.Mensagem = "Não foi possível deletar o produto! Verifique se há produto cadastrado com esse ID ou se ele já foi deletado.";
                     return result;
                 }
                 catch (Exception)
                 {
-                    result.Resultado.Mensagem = "Não foi possível deletar o produto! Verifique se há produto cadastrado com esse ID.";
+                    result.Resultado.Mensagem = "Não foi possível deletar o produto! Verifique a conexão com o banco de dados.";
                     return result;
                 }
             }
