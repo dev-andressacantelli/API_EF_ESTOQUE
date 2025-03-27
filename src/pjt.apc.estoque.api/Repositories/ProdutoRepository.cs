@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using pjt.apc.estoque.api.Context;
+﻿using pjt.apc.estoque.api.Context;
 using pjt.apc.estoque.domain.Interfaces;
 using pjt.apc.estoque.domain.Models;
-using pjt.apc.estoque.domain.Results;
 
 namespace pjt.apc.estoque.api.Repositories
 {
@@ -13,48 +11,9 @@ namespace pjt.apc.estoque.api.Repositories
         public ProdutoRepository(ProdutoContext produtoContext)
         {
             this.produtoContext = produtoContext;
-        }
+        }       
 
-
-        /*
-        public GerenteRepository(IDataAccess dataAccess) 
-        {
-            _dataAccess = dataAccess;
-        }
-
-        public async Task<List<Gerente>> GetAllGerentes()
-        {
-            throw new NotImplementedException();
-
-            try
-            {
-                string sSQL = "";
-                sSQL = @"SELECT * FROM tb_gerente ORDER BY SEQ_REGIONAL";
-
-                var ret = await _dataAccess.QueryAsync<Gerente>(sql: sSQL);
-                if (!ret.Any()) return null;
-
-                return ret.ToList();
-            }
-            catch (Exception ex) 
-            {
-                return null;
-            }      
-        }
-        */
-
-
-
-        /*
-    [HttpGet]
-    [Route("GetUsers")]
-    public List<Users> GetUsers()
-    {
-        return userContext.Users.ToList();
-    }*/
-
-
-        public async Task<List<Produto>> GetAllProdutosOrderByIdAsync()
+        public async Task<List<Produto>> GetAllProdutosAsync()
         {
             try
             {
@@ -68,51 +27,29 @@ namespace pjt.apc.estoque.api.Repositories
             {
                 return null;
             }
-        }
+        }    
 
-        public Task<List<Produto>> GetAllProdutosOrderByNameAsync()
+        public async Task<List<Produto>> GetProdutosMasculino()
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<List<Produto>> GetProdutosOrderByGeneroMasculino()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<List<Produto>> GetProdutosOrderByGeneroFeminino()
-        {
-            throw new NotImplementedException();
-        }
-
-
-        /*
-             [HttpGet]
-        [Route("GetUser")]
-        public Users GetUser(int id)
-        {
-            return userContext.Users.Where(x => x.ID == id).FirstOrDefault();
-        }
-         */
-        /*
-         [HttpDelete]
-        [Route("DeleteUser")]
-        public string DeleteUser(int id)
-        {
-            Users user = userContext.Users.Where(x => x.ID == id).FirstOrDefault();
-            if (user != null)
+            try
             {
-                userContext.Users.Remove(user);
-                userContext.SaveChanges();
-                return "User deleted";
+                var ret = produtoContext.Produto.Where(x => x.Genero == "Masculino").ToList();
+
+                if (!ret.Any()) return null;
+
+                return ret;
             }
-            else
+            catch (Exception ex)
             {
-                return "No user found";
+                return null;
             }
         }
 
-         */
+        public Task<List<Produto>> GetProdutosFeminino()
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<Produto> GetProdutoById(int id)
         {
             try
@@ -137,10 +74,6 @@ namespace pjt.apc.estoque.api.Repositories
             throw new NotImplementedException();
         }
 
-
-
-
-
         public async Task<bool> InsertProdutoAsync(Produto produto)
         {
             try
@@ -148,8 +81,7 @@ namespace pjt.apc.estoque.api.Repositories
                 if (produto != null)
                 {
                     string response = string.Empty;
-                    produtoContext.Produto.Add(produto);
-                    //produtoContext.SaveChanges();
+                    produtoContext.Produto.Add(produto);                   
                     var ret = await produtoContext.SaveChangesAsync();
                     if (ret >= 0)
                         return true;
@@ -173,5 +105,4 @@ namespace pjt.apc.estoque.api.Repositories
             throw new NotImplementedException();
         }
     }
-
 }

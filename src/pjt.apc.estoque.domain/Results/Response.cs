@@ -1,9 +1,7 @@
 ﻿namespace pjt.apc.estoque.domain.Results
 {
     public class Response
-    {
-        //public string? Resultado { get; set; } 
-        //public string? Erro { get; set; }
+    {  
         public Resultado Resultado { get; private set; } = new Resultado();
         public Erro Erro { get; private set; } = new Erro();
     }
@@ -20,5 +18,3 @@
         public string Mensagem { get; set; }
     }
 }
-
-// Response.StatusCode = StatusCodes.Status400BadRequest;   

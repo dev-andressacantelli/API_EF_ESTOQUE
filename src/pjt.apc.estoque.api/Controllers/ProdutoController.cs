@@ -19,71 +19,46 @@ namespace pjt.apc.estoque.api.Controllers
         Response result = new();
 
         [HttpGet]
-        [Route("ListaPorId")] 
+        [Route("GetProdutos")] 
         [ProducesResponseType(statusCode: StatusCodes.Status200OK, Type = typeof(Produto[]))]
         [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
         [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest, Type = typeof(Erro))]
         [ProducesResponseType(statusCode: StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetAllProdutosOrderByIdAsync()
+        public async Task<IActionResult> GetAllProdutosAsync()
         {
-            var result = await _produtoDispatcher.GetAllProdutosOrderByIdAsync();
+            var result = await _produtoDispatcher.GetAllProdutosAsync();
+
+            if (result.Resultado != null)
+                return Ok(result.Resultado.Objeto);          
+
+            return BadRequest(result.Resultado.Mensagem); 
+        }        
+
+        [HttpGet]
+        [Route("GetProdutoMasculino")]
+        [ProducesResponseType(statusCode: StatusCodes.Status200OK, Type = typeof(Produto[]))]
+        [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
+        [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest, Type = typeof(Erro))]
+        [ProducesResponseType(statusCode: StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetProdutosMasculino()
+        {
+            var result = await _produtoDispatcher.GetProdutosMasculino();
 
             if (result.Resultado != null)
                 return Ok(result.Resultado.Objeto);
 
-            //if (result.StatusCode == StatusCodes.Status404NotFound)
-            //    return NotFound();
-
-            return BadRequest("Não foi possível conectar ao DB."); 
+            return BadRequest(result.Resultado.Mensagem);
         }
 
         [HttpGet]
-        [Route("ListaPorNome")]
+        [Route("GetProdutoFeminino")]
         [ProducesResponseType(statusCode: StatusCodes.Status200OK, Type = typeof(Produto[]))]
         [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
         [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest, Type = typeof(Erro))]
         [ProducesResponseType(statusCode: StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetAllProdutosOrderByNameAsync()
+        public async Task<IActionResult> GetProdutosFeminino()
         {
-            var result = await _produtoDispatcher.GetAllProdutosOrderByNameAsync();
-
-            if (result.Resultado == null)
-                return Ok(result.Resultado);
-
-            //if (result.StatusCode == StatusCodes.Status404NotFound)
-            //    return NotFound();
-
-            return BadRequest("Não foi possível conectar ao DB.");
-        }
-
-        [HttpGet]
-        [Route("Masculino")]
-        [ProducesResponseType(statusCode: StatusCodes.Status200OK, Type = typeof(Produto[]))]
-        [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
-        [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest, Type = typeof(Erro))]
-        [ProducesResponseType(statusCode: StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetProdutosOrderByGeneroMasculino()
-        {
-            var result = await _produtoDispatcher.GetProdutosOrderByGeneroMasculino();
-
-            if (result.Resultado == null)
-                return Ok(result.Resultado);
-
-            //if (result.StatusCode == StatusCodes.Status404NotFound)
-            //    return NotFound();
-
-            return BadRequest("Não foi possível conectar ao DB.");
-        }
-
-        [HttpGet]
-        [Route("Feminino")]
-        [ProducesResponseType(statusCode: StatusCodes.Status200OK, Type = typeof(Produto[]))]
-        [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
-        [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest, Type = typeof(Erro))]
-        [ProducesResponseType(statusCode: StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetProdutosOrderByGeneroFeminino()
-        {
-            var result = await _produtoDispatcher.GetProdutosOrderByGeneroFeminino();
+            var result = await _produtoDispatcher.GetProdutosFeminino();
 
             if (result.Resultado == null)
                 return Ok(result.Resultado);
@@ -95,7 +70,7 @@ namespace pjt.apc.estoque.api.Controllers
         }
 
         [HttpGet]   
-        [Route("{id}")] 
+        [Route("GetProdutoBy{id}")] 
         [ProducesResponseType(statusCode: StatusCodes.Status200OK, Type = typeof(Produto[]))]
         [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
         [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest, Type = typeof(Erro))]
@@ -114,7 +89,7 @@ namespace pjt.apc.estoque.api.Controllers
         }
 
         [HttpGet]
-        [Route("{nome}")]
+        [Route("GetProduto{nome}")]
         [ProducesResponseType(statusCode: StatusCodes.Status200OK, Type = typeof(Produto[]))]
         [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
         [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest, Type = typeof(Erro))]
