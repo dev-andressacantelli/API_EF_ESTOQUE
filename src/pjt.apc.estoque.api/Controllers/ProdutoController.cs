@@ -19,83 +19,55 @@ namespace pjt.apc.estoque.api.Controllers
         Response result = new();
 
         [HttpGet]
-        [Route("ProdutosPorId")]
+        [Route("GetProdutos")] 
         [ProducesResponseType(statusCode: StatusCodes.Status200OK, Type = typeof(Produto[]))]
         [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
         [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest, Type = typeof(Erro))]
         [ProducesResponseType(statusCode: StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetAllProdutosOrderByIdAsync()
+        public async Task<IActionResult> GetAllProdutosAsync()
         {
-            var result = await _produtoDispatcher.GetAllProdutosOrderByIdAsync();
+            var result = await _produtoDispatcher.GetAllProdutosAsync();
 
-            if (result.Resultado == null)
-                return Ok(result.Resultado);
+            if (result.Resultado != null)
+                return Ok(result.Resultado.Objeto);          
 
-            //if (result.StatusCode == StatusCodes.Status404NotFound)
-            //    return NotFound();
-
-            return BadRequest("Não foi possível conectar ao DB."); 
-        }
+            return BadRequest(result.Resultado.Mensagem); 
+        }        
 
         [HttpGet]
-        [Route("ProdutosPorNome")]
+        [Route("GetProdutoMasculino")]
         [ProducesResponseType(statusCode: StatusCodes.Status200OK, Type = typeof(Produto[]))]
         [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
         [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest, Type = typeof(Erro))]
         [ProducesResponseType(statusCode: StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetAllProdutosOrderByNameAsync()
+        public async Task<IActionResult> GetProdutosMasculino()
         {
-            var result = await _produtoDispatcher.GetAllProdutosOrderByNameAsync();
+            var result = await _produtoDispatcher.GetProdutosMasculino();
 
-            if (result.Resultado == null)
-                return Ok(result.Resultado);
+            if (result.Resultado != null)
+                return Ok(result.Resultado.Objeto);
 
-            //if (result.StatusCode == StatusCodes.Status404NotFound)
-            //    return NotFound();
-
-            return BadRequest("Não foi possível conectar ao DB.");
+            return BadRequest(result.Resultado.Mensagem);
         }
 
         [HttpGet]
-        [Route("ProdutosMasculinos")]
+        [Route("GetProdutoFeminino")]
         [ProducesResponseType(statusCode: StatusCodes.Status200OK, Type = typeof(Produto[]))]
         [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
         [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest, Type = typeof(Erro))]
         [ProducesResponseType(statusCode: StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetProdutosOrderByGeneroMasculino()
+        public async Task<IActionResult> GetProdutosFeminino()
         {
-            var result = await _produtoDispatcher.GetProdutosOrderByGeneroMasculino();
+            var result = await _produtoDispatcher.GetProdutosFeminino();
 
-            if (result.Resultado == null)
-                return Ok(result.Resultado);
+            if (result.Resultado != null)
+                return Ok(result.Resultado.Objeto);
 
-            //if (result.StatusCode == StatusCodes.Status404NotFound)
-            //    return NotFound();
-
-            return BadRequest("Não foi possível conectar ao DB.");
+            return BadRequest(result.Resultado.Mensagem);
         }
 
-        [HttpGet]
-        [Route("ProdutosFemininos")]
-        [ProducesResponseType(statusCode: StatusCodes.Status200OK, Type = typeof(Produto[]))]
-        [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
-        [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest, Type = typeof(Erro))]
-        [ProducesResponseType(statusCode: StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetProdutosOrderByGeneroFeminino()
-        {
-            var result = await _produtoDispatcher.GetProdutosOrderByGeneroFeminino();
-
-            if (result.Resultado == null)
-                return Ok(result.Resultado);
-
-            //if (result.StatusCode == StatusCodes.Status404NotFound)
-            //    return NotFound();
-
-            return BadRequest("Não foi possível conectar ao DB.");
-        }
-
-        [HttpGet]
-        [Route("Produto{id}")]
+        [HttpGet]   
+        [Route("GetProdutoById")] 
         [ProducesResponseType(statusCode: StatusCodes.Status200OK, Type = typeof(Produto[]))]
         [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
         [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest, Type = typeof(Erro))]
@@ -104,17 +76,14 @@ namespace pjt.apc.estoque.api.Controllers
         {
             var result = await _produtoDispatcher.GetProdutoById(id);
 
-            if (result.Resultado == null)
-                return Ok(result.Resultado);
+            if (result.Resultado.Objeto != null)
+                return Ok(result.Resultado.Objeto);
 
-            //if (result.StatusCode == StatusCodes.Status404NotFound)
-            //    return NotFound();
-
-            return BadRequest("Não foi possível conectar ao DB.");
+            return BadRequest(result.Resultado.Mensagem);
         }
 
         [HttpGet]
-        [Route("Produto{nome}")]
+        [Route("GetProdutoByName")]
         [ProducesResponseType(statusCode: StatusCodes.Status200OK, Type = typeof(Produto[]))]
         [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
         [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest, Type = typeof(Erro))]
@@ -123,17 +92,14 @@ namespace pjt.apc.estoque.api.Controllers
         {
             var result = await _produtoDispatcher.GetProdutoByName(nome);
 
-            if (result.Resultado == null)
-                return Ok(result.Resultado);
+            if (result.Resultado.Objeto != null)
+                return Ok(result.Resultado.Objeto);
 
-            //if (result.StatusCode == StatusCodes.Status404NotFound)
-            //    return NotFound();
-
-            return BadRequest("Não foi possível conectar ao DB.");
+            return BadRequest(result.Resultado.Mensagem);
         }
 
         [HttpPost]
-        [Route("Produto")]
+        [Route("AddProduto")]
         [ProducesResponseType(statusCode: StatusCodes.Status200OK, Type = typeof(Produto[]))]
         [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
         [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest, Type = typeof(Erro))]
@@ -142,17 +108,14 @@ namespace pjt.apc.estoque.api.Controllers
         {
             var result = await _produtoDispatcher.InsertProdutoAsync(produto);
 
-            if (result.Resultado == null)
-                return Ok(result.Resultado);
+            if (result.Resultado != null)
+                return Ok(result.Resultado.Mensagem);           
 
-            //if (result.StatusCode == StatusCodes.Status404NotFound)
-            //    return NotFound();
-
-            return BadRequest("Não foi possível conectar ao DB.");
+            return BadRequest(result.Resultado.Mensagem);
         }
 
         [HttpPut]
-        [Route("Produto{id}")]
+        [Route("UpdateProduto")]
         [ProducesResponseType(statusCode: StatusCodes.Status200OK, Type = typeof(Produto[]))]
         [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
         [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest, Type = typeof(Erro))]
@@ -161,17 +124,14 @@ namespace pjt.apc.estoque.api.Controllers
         {
             var result = await _produtoDispatcher.UpdateProdutoAsync(produto);
 
-            if (result.Resultado == null)
-                return Ok(result.Resultado);
+            if (result.Resultado != null)
+                return Ok(result.Resultado.Mensagem);
 
-            //if (result.StatusCode == StatusCodes.Status404NotFound)
-            //    return NotFound();
-
-            return BadRequest("Não foi possível conectar ao DB.");
+            return BadRequest(result.Resultado.Mensagem);
         }
 
         [HttpDelete]
-        [Route("Produto{id}")]
+        [Route("DeleteProduto")]
         [ProducesResponseType(statusCode: StatusCodes.Status200OK, Type = typeof(Produto[]))]
         [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
         [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest, Type = typeof(Erro))]
@@ -180,13 +140,10 @@ namespace pjt.apc.estoque.api.Controllers
         {
             var result = await _produtoDispatcher.DeleteProdutoAsync(id);
 
-            if (result.Resultado == null)
-                return Ok(result.Resultado);
+            if (result.Resultado != null)
+                return Ok(result.Resultado.Mensagem);
 
-            //if (result.StatusCode == StatusCodes.Status404NotFound)
-            //    return NotFound();
-
-            return BadRequest("Não foi possível conectar ao DB.");
+            return BadRequest(result.Resultado.Mensagem);
         }
     }
 } 

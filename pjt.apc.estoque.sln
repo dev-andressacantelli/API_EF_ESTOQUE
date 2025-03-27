@@ -7,11 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pjt.apc.estoque.api", "src\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pjt.apc.estoque.application", "src\pjt.apc.estoque.application\pjt.apc.estoque.application.csproj", "{57EC434B-8520-4CF6-95BB-7812553A96E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pjt.apc.estoque.crosscutting", "src\pjt.apc.estoque.crosscutting\pjt.apc.estoque.crosscutting.csproj", "{FDCDCE87-DADC-41E4-B7A0-345F8613AFD3}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pjt.apc.estoque.domain", "src\pjt.apc.estoque.domain\pjt.apc.estoque.domain.csproj", "{54EAEAE4-5496-428B-BB8D-C5AE2A950621}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pjt.apc.estoque.infrastructure", "src\pjt.apc.estoque.infrastructure\pjt.apc.estoque.infrastructure.csproj", "{57DE6F61-84AC-49F6-9D5D-D96B798D6BED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,18 +23,10 @@ Global
 		{57EC434B-8520-4CF6-95BB-7812553A96E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57EC434B-8520-4CF6-95BB-7812553A96E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57EC434B-8520-4CF6-95BB-7812553A96E4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FDCDCE87-DADC-41E4-B7A0-345F8613AFD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FDCDCE87-DADC-41E4-B7A0-345F8613AFD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FDCDCE87-DADC-41E4-B7A0-345F8613AFD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FDCDCE87-DADC-41E4-B7A0-345F8613AFD3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{54EAEAE4-5496-428B-BB8D-C5AE2A950621}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{54EAEAE4-5496-428B-BB8D-C5AE2A950621}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54EAEAE4-5496-428B-BB8D-C5AE2A950621}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54EAEAE4-5496-428B-BB8D-C5AE2A950621}.Release|Any CPU.Build.0 = Release|Any CPU
-		{57DE6F61-84AC-49F6-9D5D-D96B798D6BED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{57DE6F61-84AC-49F6-9D5D-D96B798D6BED}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{57DE6F61-84AC-49F6-9D5D-D96B798D6BED}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{57DE6F61-84AC-49F6-9D5D-D96B798D6BED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
