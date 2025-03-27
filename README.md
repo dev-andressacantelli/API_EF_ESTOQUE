@@ -1,5 +1,5 @@
 Olá, este projeto é de minha autoria, portanto solicito respeito pelo meu trabalho e que não o plagie,
-mas fique a vontade para clona-lo para avaliação ou estudos.    
+mas fique à vontade para clona-lo para avaliação ou estudos.    
 
 O objetivo desta API é gerenciar um estoque de produtos do tipo 'vestuário', 
 sendo assim, criei um CRUD utilizando .net 8, Entity Framework (code-first) e Bogus Fake Data.       
