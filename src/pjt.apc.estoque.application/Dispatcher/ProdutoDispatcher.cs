@@ -145,9 +145,27 @@ namespace pjt.apc.estoque.application.Dispatcher
             return result;
         }
 
-        public Task<Response> UpdateProdutoAsync(Produto produto)
+        public async Task<Response> UpdateProdutoAsync(Produto produto)
         {
-            throw new NotImplementedException();
+            if (produto != null)
+            {
+                try
+                {
+                    var alterData = await _produtoRepository.UpdateProdutoAsync(produto);
+
+                    if (alterData == true)
+                    {
+                        result.Resultado.Mensagem = "Produto alterado com sucesso no banco de dados!";
+                    }
+                }
+                catch (Exception)
+                {
+                    result.Resultado.Mensagem = "Não foi possível alterar o produto! Verifique se os campos estão devidamente preenchidos!";
+                    return result;
+                }
+            }
+
+            return result;
         }
 
         public Task<Response> DeleteProdutoAsync(int id)

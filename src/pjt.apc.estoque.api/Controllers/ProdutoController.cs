@@ -124,13 +124,10 @@ namespace pjt.apc.estoque.api.Controllers
         {
             var result = await _produtoDispatcher.UpdateProdutoAsync(produto);
 
-            if (result.Resultado == null)
-                return Ok(result.Resultado);
+            if (result.Resultado != null)
+                return Ok(result.Resultado.Mensagem);
 
-            //if (result.StatusCode == StatusCodes.Status404NotFound)
-            //    return NotFound();
-
-            return BadRequest("Não foi possível conectar ao DB.");
+            return BadRequest(result.Resultado.Mensagem);
         }
 
         [HttpDelete]

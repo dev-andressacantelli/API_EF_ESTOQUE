@@ -120,10 +120,24 @@ namespace pjt.apc.estoque.api.Repositories
             }
         }
 
-        public Task<Produto> UpdateProdutoAsync(Produto produto)
+        public async Task<bool> UpdateProdutoAsync(Produto produto)
         {
-            throw new NotImplementedException();
-        }
+            try
+            {
+                if (produto != null)
+                {
+                    produtoContext.Entry(produto).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    var ret = await produtoContext.SaveChangesAsync();
+                    return true;                 
+                }
+
+                return false;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }    
 
         public Task<Produto> DeleteProdutoAsync(int id)
         {
