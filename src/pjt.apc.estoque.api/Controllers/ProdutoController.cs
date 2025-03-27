@@ -115,7 +115,7 @@ namespace pjt.apc.estoque.api.Controllers
         }
 
         [HttpPut]
-        [Route("UpdateProduto{id}")]
+        [Route("UpdateProduto")]
         [ProducesResponseType(statusCode: StatusCodes.Status200OK, Type = typeof(Produto[]))]
         [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
         [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest, Type = typeof(Erro))]
