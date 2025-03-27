@@ -100,9 +100,26 @@ namespace pjt.apc.estoque.application.Dispatcher
             }
         }
 
-        public Task<Response> GetProdutoByName(string nome)
+        public async Task<Response> GetProdutoByName(string nome)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var consultaDb = await _produtoRepository.GetProdutoByName(nome);
+
+                if (consultaDb != null)
+                {
+                    result.Resultado.Objeto = consultaDb;
+                    return result;
+                }
+
+                result.Resultado.Mensagem = "Não existe produto cadastrado com esse Nome, ou o mesmo foi deletado da base de banco de dados.";
+                return result;
+            }
+            catch (Exception)
+            {
+
+                return result;
+            }
         }
 
         public async Task<Response> InsertProdutoAsync(Produto produto)
@@ -110,7 +127,7 @@ namespace pjt.apc.estoque.application.Dispatcher
             if (produto != null)
             {
                 try
-                {
+                {                 
                     var addData = await _produtoRepository.InsertProdutoAsync(produto);
 
                     if (addData == true)

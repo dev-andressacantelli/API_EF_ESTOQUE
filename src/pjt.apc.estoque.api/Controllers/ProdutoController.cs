@@ -92,13 +92,10 @@ namespace pjt.apc.estoque.api.Controllers
         {
             var result = await _produtoDispatcher.GetProdutoByName(nome);
 
-            if (result.Resultado == null)
-                return Ok(result.Resultado);
+            if (result.Resultado.Objeto != null)
+                return Ok(result.Resultado.Objeto);
 
-            //if (result.StatusCode == StatusCodes.Status404NotFound)
-            //    return NotFound();
-
-            return BadRequest("Não foi possível conectar ao DB.");
+            return BadRequest(result.Resultado.Mensagem);
         }
 
         [HttpPost]
@@ -112,12 +109,9 @@ namespace pjt.apc.estoque.api.Controllers
             var result = await _produtoDispatcher.InsertProdutoAsync(produto);
 
             if (result.Resultado != null)
-                return Ok(result.Resultado.Mensagem);
+                return Ok(result.Resultado.Mensagem);           
 
-            //if (result.StatusCode == StatusCodes.Status404NotFound)
-            //    return NotFound();
-
-            return BadRequest("Não foi possível conectar ao DB.");
+            return BadRequest(result.Resultado.Mensagem);
         }
 
         [HttpPut]

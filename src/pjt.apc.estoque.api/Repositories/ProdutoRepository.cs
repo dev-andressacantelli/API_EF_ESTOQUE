@@ -80,9 +80,23 @@ namespace pjt.apc.estoque.api.Repositories
             }
         }
 
-        public Task<Produto> GetProdutoByName(string nome)
+        public async Task<Produto> GetProdutoByName(string nome)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Produto produto = produtoContext.Produto.Where(x => x.Nome == nome).FirstOrDefault();
+
+                if (produto == null)
+                {
+                    return null;
+                }
+
+                return produto;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         public async Task<bool> InsertProdutoAsync(Produto produto)
