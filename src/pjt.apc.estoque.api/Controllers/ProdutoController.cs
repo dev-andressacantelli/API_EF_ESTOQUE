@@ -67,7 +67,7 @@ namespace pjt.apc.estoque.api.Controllers
         }
 
         [HttpGet]   
-        [Route("GetProdutoBy{id}")] 
+        [Route("GetProdutoById")] 
         [ProducesResponseType(statusCode: StatusCodes.Status200OK, Type = typeof(Produto[]))]
         [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
         [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest, Type = typeof(Erro))]
@@ -76,17 +76,14 @@ namespace pjt.apc.estoque.api.Controllers
         {
             var result = await _produtoDispatcher.GetProdutoById(id);
 
-            if (result.Resultado == null)
-                return Ok(result.Resultado);
+            if (result.Resultado.Objeto != null)
+                return Ok(result.Resultado.Objeto);
 
-            //if (result.StatusCode == StatusCodes.Status404NotFound)
-            //    return NotFound();
-
-            return BadRequest("Não foi possível conectar ao DB.");
+            return BadRequest(result.Resultado.Mensagem);
         }
 
         [HttpGet]
-        [Route("GetProduto{nome}")]
+        [Route("GetProdutoByName")]
         [ProducesResponseType(statusCode: StatusCodes.Status200OK, Type = typeof(Produto[]))]
         [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
         [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest, Type = typeof(Erro))]

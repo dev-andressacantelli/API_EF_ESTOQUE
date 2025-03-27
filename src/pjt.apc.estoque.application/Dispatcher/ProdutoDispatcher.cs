@@ -88,9 +88,9 @@ namespace pjt.apc.estoque.application.Dispatcher
                 {
                     result.Resultado.Objeto = consultaDb;
                     return result;
-                }
-                
-                result.Resultado.Mensagem = "Não foi possível retornar os dados! Verifique a conexão com o banco de dados.";
+                }                
+               
+                result.Resultado.Mensagem = "Não existe produto cadastrado com esse ID, ou o mesmo foi deletado da base de banco de dados.";
                 return result;
             }
             catch (Exception)

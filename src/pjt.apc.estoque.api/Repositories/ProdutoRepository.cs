@@ -61,7 +61,7 @@ namespace pjt.apc.estoque.api.Repositories
             }
         }
 
-        public Task<Produto> GetProdutoById(int id)
+        public async Task<Produto> GetProdutoById(int id)
         {
             try
             {
@@ -72,7 +72,7 @@ namespace pjt.apc.estoque.api.Repositories
                     return null;
                 }
 
-                return null;
+                return produto;
             }
             catch (Exception ex)
             {
