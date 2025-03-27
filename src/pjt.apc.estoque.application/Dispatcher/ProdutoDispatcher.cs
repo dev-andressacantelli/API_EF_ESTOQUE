@@ -1,7 +1,6 @@
 ﻿using pjt.apc.estoque.domain.Interfaces;
 using pjt.apc.estoque.domain.Models;
 using pjt.apc.estoque.domain.Results;
-using System.Runtime.InteropServices;
 
 namespace pjt.apc.estoque.application.Dispatcher
 {
