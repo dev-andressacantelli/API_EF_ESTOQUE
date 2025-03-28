@@ -18,7 +18,7 @@ Nesta etapa ainda não temos a tabela criada em banco, para que isso aconteça s
 a tabela deverá aparecer na sua instância de banco de dados.  
 9 - Com o Microsoft SQL Server Management Studio (ou sua IDE de preferência) aberto,
 clique em atualizar base de dados, procure por 'Tabelas', e note que a tabela 'Produtos' aparecerá.    
-10 - Com as conexões feitas, agora você já pode testar os endpoints via swagger.  
+10 - Com as conexões feitas, vá ao visual studio e selecione o IIS e inicie a aplicação, agora você já pode testar os endpoints via swagger.  
 
 Para popular a tabela com dados prontos, execute o endpoint '/api/Produto/AddFakeData',
 este método irá popular a tabela com 5 objetos à cada execução.  
